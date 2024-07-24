@@ -24,7 +24,7 @@ const Carousel = ({ imageUrls, title }) => {
     timerRef.current = setInterval(handleNext, 3000);
 
     return () => clearInterval(timerRef.current);
-  }, []);
+  });
 
   const resetTimer = () => {
     clearInterval(timerRef.current);
