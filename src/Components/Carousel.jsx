@@ -22,6 +22,8 @@ const Carousel = ({ imageUrls, title }) => {
 
   useEffect(() => {
     timerRef.current = setInterval(handleNext, 3000);
+
+    return () => clearInterval(timerRef.current);
   }, []);
 
   const resetTimer = () => {
