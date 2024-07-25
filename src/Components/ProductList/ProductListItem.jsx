@@ -5,7 +5,13 @@ import { buildUrl } from "utils/url";
 
 import AddToCart from "../commons/AddToCart";
 
-const ProductListItem = ({ slug, imageUrl, name, offerPrice }) => (
+const ProductListItem = ({
+  slug,
+  imageUrl,
+  name,
+  offerPrice,
+  availableQuantity,
+}) => (
   <Link
     className="neeto-ui-border-black neeto-ui-rounded-xl flex w-48 flex-col items-center justify-between border p-4"
     to={buildUrl(routes.products.show, { slug })}
@@ -15,7 +21,7 @@ const ProductListItem = ({ slug, imageUrl, name, offerPrice }) => (
       {name}
     </Typography>
     <Typography>${offerPrice}</Typography>
-    <AddToCart {...{ slug }} />
+    <AddToCart {...{ availableQuantity, slug }} />
   </Link>
 );
 
