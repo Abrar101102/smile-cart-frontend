@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import Carousel from "./Carousel";
 
 import { Header, PageNotFound, PageLoader } from "../commons";
+import AddToCart from "../commons/AddToCart";
 
 // import { IMAGE_URLS } from "./constants";
 
@@ -62,6 +63,7 @@ const Product = () => {
           <Typography className="font-semibold text-green-600">
             {discountPercentage}% off
           </Typography>
+          <AddToCart {...{ slug }} />
         </div>
       </div>
     </div>
