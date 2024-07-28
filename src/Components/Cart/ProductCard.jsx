@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import { Delete } from "neetoicons";
 import { Alert, Typography } from "neetoui";
-import { prop } from "ramda";
 import useCartItemsStore from "stores/useCartItemsStore";
 
 import ProductQuantity from "../commons/ProductQuantity";
@@ -16,7 +15,7 @@ const ProductCard = ({
   availableQuantity,
 }) => {
   const [shouldShowDeleteAlert, setShouldShowDeleteAlert] = useState(false);
-  const removeCartItem = useCartItemsStore(prop("removeCartItem"));
+  const removeCartItem = useCartItemsStore.pickFrom();
 
   return (
     <div className="neeto-ui-rounded neeto-ui-border-black border p-2">

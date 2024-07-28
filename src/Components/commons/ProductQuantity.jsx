@@ -52,7 +52,6 @@ const ProductQuantity = ({ slug, availableQuantity }) => {
         onChange={handleSetCount}
         onClick={preventNavigation}
       />
-      {selectedQuantity}
       <TooltipWrapper
         content="Reached maximum units"
         position="top"

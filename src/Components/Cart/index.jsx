@@ -13,7 +13,7 @@ import { MRP, OFFER_PRICE } from "../constants";
 import { cartTotalOf } from "../utils";
 
 const Cart = () => {
-  const { cartItems, setSelectedQuantity } = useCartItemsStore();
+  const { cartItems, setSelectedQuantity } = useCartItemsStore.pick();
 
   const slugs = keys(cartItems);
   const [products, setProducts] = useState([]);
