@@ -5,13 +5,14 @@ import { Search } from "neetoicons";
 import { Input, NoData } from "neetoui";
 import { isEmpty } from "ramda";
 import useDebounce from "src/Hooks/useDebounce";
+import withTitle from "utils/withTitle";
 
 import ProductListItem from "./ProductListItem";
 
 import Header from "../commons/Header";
 import PageLoader from "../commons/PageLoader";
 
-const Home = () => {
+const ProductList = () => {
   const [searchKey, setSearchKey] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
@@ -64,4 +65,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withTitle(ProductList);

@@ -28,7 +28,6 @@ const ProductCard = ({
           <Typography style="body2">MRP: ${mrp}</Typography>
           <Typography style="body2">Offer price: ${offerPrice}</Typography>
         </div>
-        <ProductQuantity {...{ availableQuantity, slug }} />
         <div className="flex items-center space-x-2">
           <ProductQuantity {...{ availableQuantity, slug }} />
           <Delete

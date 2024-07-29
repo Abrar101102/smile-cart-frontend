@@ -5,5 +5,11 @@
   "offerPrice": "Offer price: ${{offerPrice}}",
   "totalMrp": "Total MRP: <typography>${{mrp}}</typography>",
   "totalDiscounts": "Total discounts: <span>${{discounts}} ({{discountPercentage}}%)</span>",
-  "totalOfferPrice": "Total offer price: <span>${{offerPrice}}</span>"
+  "totalOfferPrice": "Total offer price: <span>${{offerPrice}}</span>",
+  "title": "Smile Cart",
+  "pageTitle": "{{title}} | Smile Cart",
+  "cart": {
+    "title": "My cart"
+  },
+  "product": "Product"
 }
