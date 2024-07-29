@@ -4,7 +4,7 @@ import en from "translations/en.json";
 
 i18n.use(initReactI18next).init({
   resources: { en: { translation: en } },
-  fallbacking: "en",
+  fallbackLng: "en",
 });
 
 export default i18n;
