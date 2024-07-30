@@ -1,11 +1,9 @@
-import { useState, useEffect } from "react";
-
-import productsApi from "apis/products";
 import i18n from "i18next";
 import { Typography, Button } from "neetoui";
-import { isNotNil, append } from "ramda";
+import { isNotNil } from "ramda";
 import { useParams } from "react-router-dom";
 import routes from "routes";
+import { useShowProduct } from "src/hooks/reactQuery/useProductsApi";
 import withTitle from "utils/withTitle";
 
 import Carousel from "./Carousel";
@@ -17,42 +15,18 @@ import useSelectedQuantity from "../hooks/useSelectedQuantity";
 // import { IMAGE_URLS } from "./constants";
 
 const Product = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [product, setProduct] = useState({});
   const { slug } = useParams();
+  const { data: product = {}, isLoading, isError } = useShowProduct(slug);
   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
 
-  const [isError, setIsError] = useState(false);
-  const fetchProduct = async () => {
-    try {
-      const product = await productsApi.show(slug);
-      setProduct(product);
-    } catch {
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchProduct();
-  }, []);
-  if (isError) return <PageNotFound />;
-
-  const {
-    name,
-    description,
-    mrp,
-    offerPrice,
-    imageUrl,
-    imageUrls,
-    availableQuantity,
-  } = product;
+  const { name, description, mrp, offerPrice, imageUrls, imageUrl } = product;
   const totalDiscounts = mrp - offerPrice;
   const discountPercentage = ((totalDiscounts / mrp) * 100).toFixed(1);
   if (isLoading) {
     return <PageLoader />;
   }
+
+  if (isError) return <PageNotFound />;
 
   return (
     <div className="px-6 pb-6">
@@ -61,7 +35,7 @@ const Product = () => {
         <div className="w-2/5">
           <div className="flex justify-center gap-16">
             {isNotNil(imageUrls) ? (
-              <Carousel imageUrls={append(imageUrl, imageUrls)} title={name} />
+              <Carousel />
             ) : (
               <img alt={name} className="w-48" src={imageUrl} />
             )}
@@ -77,7 +51,7 @@ const Product = () => {
             {discountPercentage}% off
           </Typography>
           <div className="flex space-x-10">
-            <AddToCart {...{ availableQuantity, slug }} />
+            <AddToCart {...{ slug }} />
             <Button
               className="bg-neutral-800 hover:bg-neutral-950"
               label="Buy Now"

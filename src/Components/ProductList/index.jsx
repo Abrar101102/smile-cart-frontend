@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-import productsApi from "apis/products";
+import useDebounce from "hooks/useDebounce";
 import { Search } from "neetoicons";
 import { Input, NoData } from "neetoui";
 import { isEmpty } from "ramda";
-import useDebounce from "src/Hooks/useDebounce";
+import { useFetchProducts } from "src/hooks/reactQuery/useProductsApi";
 import withTitle from "utils/withTitle";
 
 import ProductListItem from "./ProductListItem";
@@ -14,25 +14,11 @@ import PageLoader from "../commons/PageLoader";
 
 const ProductList = () => {
   const [searchKey, setSearchKey] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState([]);
   const debouncedSearchKey = useDebounce(searchKey);
-  const fetchProducts = async () => {
-    try {
-      const data = await productsApi.fetch({
-        searchTerm: debouncedSearchKey,
-      });
-      setProducts(data.products);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { data: { products = [] } = {}, isLoading } = useFetchProducts({
+    searchTerm: debouncedSearchKey,
+  });
 
-  useEffect(() => {
-    fetchProducts();
-  }, [debouncedSearchKey]);
   if (isLoading) {
     return <PageLoader />;
   }
