@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 
 import { Delete } from "neetoicons";
 import { Alert, Typography } from "neetoui";
@@ -49,4 +49,4 @@ const ProductCard = ({ slug, imageUrl, offerPrice, mrp, name }) => {
   );
 };
 
-export default ProductCard;
+export default memo(ProductCard);

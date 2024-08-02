@@ -1,9 +1,11 @@
+import { memo } from "react";
+
 import classNames from "classnames";
 import { Typography, Button } from "neetoui";
 import { gt, keys } from "ramda";
+import { useTranslation, Trans } from "react-i18next";
 import routes from "routes";
 import useCartItemsStore from "stores/useCartItemsStore";
-import { useTranslation, Trans } from "react-i18next";
 
 const PriceCard = ({ totalMrp, totalOfferPrice }) => {
   const { t } = useTranslation();
@@ -57,4 +59,4 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
     </div>
   );
 };
-export default PriceCard;
+export default memo(PriceCard);
